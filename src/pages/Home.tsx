@@ -33,7 +33,7 @@ const Home: FC = () => {
 
   return (
     <>
-      <Title value="Lynflix - AdFree Movie / Anime Watching Website" />
+      <Title value="Lynflix - Wyche Production" />
 
       <div className="flex sm:hidden justify-between px-[4vw] mt-6">
         <Link to="/" className="flex items-center gap-2">
