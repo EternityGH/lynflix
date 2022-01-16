@@ -1,0 +1,7 @@
+{
+  "name": "lynflix",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
