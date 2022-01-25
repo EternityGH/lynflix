@@ -1,19 +1,14 @@
 {
-  "name": "lynflix",
-  "version": "0.0.1",
-  "homepage": "https://EternityGH.github.io/lynflix/",
+  "name": "filmhot",
+  "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@capacitor/core": "^3.3.4",
     "axios": "^0.24.0",
     "firebase": "^9.6.1",
-    "gh-pages": "^3.2.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hls-player": "^3.0.7",
