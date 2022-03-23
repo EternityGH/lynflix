@@ -1,15 +1,15 @@
 import { FC, useEffect } from "react";
 
 import Comment from "./Comment";
-import DesktopPlayer from "../Player/Desktop";
 import { DetailType } from "../../shared/types";
+import HlsPlayer from "react-hls-player";
 import MetaData from "./MetaData";
-import MobilePlayer from "../Player/Mobile";
 import NavBar from "../NavBar";
+import { Player } from "react-tuby";
 import Similar from "./Similar";
 import Skeleton from "../Skeleton";
 import Title from "../Title";
-import { isMobile } from "../../shared/utils";
+import { subtitleProxy } from "../../shared/constants";
 
 interface WatchViewProps {
   data?: DetailType;
@@ -73,7 +73,7 @@ const WatchView: FC<WatchViewProps> = ({
             typeof episodeIndex !== "undefined"
               ? ` - Episode ${episodeIndex + 1}`
               : ""
-          } - Lynflix`}
+          } - FilmHot`}
         />
       )}
       <div className="flex justify-center">
@@ -84,21 +84,19 @@ const WatchView: FC<WatchViewProps> = ({
             <div className="flex flex-col items-stretch flex-grow">
               <div key={episodeIndex} className="w-full">
                 {data && sources && subtitles ? (
-                  <>
-                    {isMobile() ? (
-                      <MobilePlayer
-                        playerKey={playerKey}
-                        sources={sources}
-                        subtitles={subtitles}
-                      />
-                    ) : (
-                      <DesktopPlayer
-                        playerKey={playerKey}
-                        sources={sources}
-                        subtitles={subtitles}
-                      />
-                    )}
-                  </>
+                  <Player
+                    playerKey={playerKey}
+                    primaryColor="#0D90F3"
+                    src={sources}
+                    subtitles={
+                      subtitles?.map((subtitle) => ({
+                        ...subtitle,
+                        url: subtitleProxy(subtitle.url),
+                      })) || []
+                    }
+                  >
+                    {(ref, props) => <HlsPlayer playerRef={ref} {...props} />}
+                  </Player>
                 ) : (
                   <div className="w-full h-0 pb-[56.25%] relative">
                     <Skeleton className="absolute top-0 left-0 w-full h-full" />
